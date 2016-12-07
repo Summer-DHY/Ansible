@@ -1,0 +1,12 @@
+---
+- name: 删除modprobe和sysctl文件
+  file: path={{item}} state=absent
+  with_items:
+     - /sbin/modprobe
+     - /sbin/sysctl
+
+- name: 创建modprobe和sysctl文件软连接
+  file: src=/bin/true dest='/sbin/{{item}}' state=link
+  with_items:
+     - modprobe
+     - sysctl

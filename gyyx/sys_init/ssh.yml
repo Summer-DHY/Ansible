@@ -1,0 +1,6 @@
+---
+- name: ssh 配置
+  lineinfile: dest=/etc/ssh/sshd_config line='{{item}}'
+  with_items:
+     - "Port 63008"
+     - "UseDNS no"

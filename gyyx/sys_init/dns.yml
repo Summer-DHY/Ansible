@@ -1,0 +1,9 @@
+---
+- name: DNS 设置
+  lineinfile: dest=/etc/hosts line='{{item}}'
+  with_items:
+     - "nameserver    115.182.1.26"
+     - "nameserver    42.62.122.54"
+
+- name: 设置服务开机自启动
+  script: scripts/boot_service.sh

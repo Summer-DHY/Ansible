@@ -1,0 +1,20 @@
+---
+- name: manage部署--安装脚本执行
+  script: scripts/manage_deploy.sh
+
+- name: manage部署--拷贝tgz包
+  unarchive:
+     src: soft/manage_py26.tgz
+     dest: /home/
+     owner: manage
+     group: manage
+
+- name: manage部署--拷贝rotor2.py
+  copy:
+     src: scripts/rotor2.py 
+     dest: /usr/lib64/python2.6/site-packages/
+
+- name: manage部署--加入开机自启动
+  service:
+     name: managed
+     enabled: yes  

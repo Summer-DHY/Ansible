@@ -1,0 +1,6 @@
+---
+- name: NTP 配置
+  copy: 
+    src: conf/ntp.conf
+    dest: /etc/ntp.conf
+  

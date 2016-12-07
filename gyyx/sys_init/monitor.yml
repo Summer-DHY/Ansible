@@ -1,0 +1,24 @@
+---
+- name: monitor部署--创建用户
+  user:
+    name: monitor
+
+- name: monitor部署--创建.ssh
+  file:
+    path: /home/monitor/.ssh
+    state: directory
+    owner: monitor
+    group: monitor
+
+- name: monitor部署--拷贝公钥文件
+  copy: 
+    src: keys/authorized_keys
+    dest: /home/monitor/.ssh/authorized_keys
+    owner: monitor
+    group: monitor
+
+- name: monitor部署--monitor用户加入sudoers
+  lineinfile: dest=/etc/sudoers line='{{item}}'
+  with_items:
+    - "monitor ALL=(root)      NOPASSWD:       /bin/grep"
+    - "monitor ALL=(root)      NOPASSWD:       /opt/MegaRAID/MegaCli/MegaCli64"

@@ -1,0 +1,24 @@
+---
+- name: 安装必要插件
+  yum: name={{item}} state=installed
+  with_items:
+    - gcc
+    - gcc-c++
+    - autoconf
+    - automake
+    - make
+    - zlib
+    - zlib-devel
+    - openssl 
+    - openssl-devel
+    - pcre
+    - pcre-devel
+    - wget
+    - tree
+    - vim
+    - telnet
+    - dos2unix
+    - svn
+    - git
+    - lrzsz
+    - unzip

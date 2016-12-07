@@ -1,0 +1,25 @@
+---
+- hosts: test
+  remote_user: root
+
+  tasks:
+# 安装必要插件
+    - include: install_apk.yml
+# 修复openvz
+    - include: openvz.yml
+# SSH设置
+    - include: ssh.yml
+      notify: restart sshd
+# DNS设置
+    - include: dns.yml
+# monitor部署
+    - include: monitor.yml
+# manage部署
+    - include: manage.yml
+      notify: restart managed
+# NTP设置
+    - include: ntp.yml
+      notify: restart ntpd
+   
+  handlers:
+    - include: handlers/main.yml
